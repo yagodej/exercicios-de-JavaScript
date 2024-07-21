@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: rgb(14, 73, 181);
+        }
+
+        .branco {
+            background-color: white;
+            height: 500px;
+            width: 1000px;
+            margin-top: 250px;
+            margin-left: 24%;
+            border-radius: 10px;
+            box-shadow: 5px 5px rgba(0, 0, 0, 0.559);
+        }
+
+        .oi01 {
+            margin-left: 10%;
+            font-size: 20pt;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .oi01 input {
+            width: 300px;
+            height: 25px;
+        }
+
+        #botao_1 {
+            margin-left: 38%;
+            position: absolute;
+            margin-top: -57px;
+            height: 30px;
+            width: 100px;
+            font-size: 18px;
+        }
+
+        #flista {
+            width: 240px;
+            height: 160px;
+            margin-left: 20px;
+        }
+
+        #botao_2 {
+            margin-left: -190px;
+            margin-top: 180px;
+            position: absolute;
+            height: 24px;
+            width: 100px;
+            font-size: 16px;
+        }
+
+        #res {
+            position: absolute;
+            margin-left: 500px;
+        }
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="branco">
+        <p class="oi01">Número (entre 1 e 100): <input type="number" name="fnum" id="txt1"></p>
+        <input type="button" value="Adicionar" id="botao_1" onclick="adicionar()">
+        <br>
+        <select name="filista" id="flista" size="6"></select>
+        <input type="button" value="Finalizar" id="botao_2" onclick="finalizar()">
+        <div id="res">
+            
+        </div>
+    </div>
+
+    <script>
+        let num = document.querySelector('input#txt1');
+        let lista = document.querySelector('select#flista');
+        let res = document.querySelector('div#res');
+        let valores = [];
+
+        function isNumero(n) {
+            if (Number(n) >= 1 && Number(n) <= 100) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function inList(n, l) {
+            if (l.indexOf(Number(n)) != -1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function adicionar() {
+            if (isNumero(num.value) && !inList(num.value, valores)) {
+                valores.push(Number(num.value));
+                let item = document.createElement('option');
+                item.text = `Valor ${num.value} adicionado`;
+                lista.appendChild(item);
+                res.innerHTML = '';
+            } else {
+                window.alert('Valor inválido ou já encontrado na lista.');
+            }
+            num.value = '';
+            num.focus();
+        }
+
+        function finalizar() {
+            if (valores.length == 0) {
+                window.alert('Adicione valores antes de finalizar!');
+            } else {
+                let total = valores.length;
+                let maior = Math.max.apply(null, valores);
+                let menor = Math.min.apply(null, valores);
+                let soma = valores.reduce((acc, val) => acc + val, 0);
+                let media = soma / total;
+                res.innerHTML = '';
+                res.innerHTML += `<p>Ao todo, temos ${total} números cadastrados.</p>`;
+                res.innerHTML += `<p>O maior valor informado foi ${maior}.</p>`;
+                res.innerHTML += `<p>O menor valor informado foi ${menor}.</p>`;
+                res.innerHTML += `<p>Somando todos os valores, temos ${soma}.</p>`;
+                res.innerHTML += `<p>A média dos valores é ${media}.</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

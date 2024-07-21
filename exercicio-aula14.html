@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: rgb(14, 73, 181);
+        }
+
+        .branco {
+            background-color: white;
+            height: 600px;
+            width: 1000px;
+            margin-top: 200px;
+            margin-left: 25%;
+            border-radius: 10px;
+            box-shadow:  5px 5px rgba(0, 0, 0, 0.559);
+        }
+
+        .branco input {
+            height: 20px;
+            margin: 70px;
+            margin-top: 150px;
+        }
+
+        .divmae {
+            display: flex;
+            margin-left: 20%;
+            position: absolute;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .divmae h2{
+            margin: 0 150px;
+            margin-top: 120px;
+        }
+
+        .div {
+            position: absolute;
+            margin-left: 28%;
+            margin-top: -300px;
+        }
+
+        #resultado_1 {
+            margin-left: 40%;
+            margin-top: -100px;
+            font-size: 18pt;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #resultado_2 {
+            margin-left: 44%;
+            position: absolute;
+            margin-top: -28px;
+            font-size: 18pt;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #resultado_3 {
+            margin-left: 48%;
+            position: absolute;
+            margin-top: -28px;
+            font-size: 18pt;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #resultado_4 {
+            margin-left: 52%;
+            position: absolute;
+            margin-top: -28px;
+            font-size: 18pt;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+    </style>
+    <title>Document</title>
+</head>
+
+    <div class="divmae">
+        <h2>Inicio</h2>
+        <h2>Fim</h2>
+        <h2>Passo</h2>
+    </div>
+    <div class="branco">
+        <input type="number" name="Inicio" id="txt1">
+        <input type="number" name="number" id="txt2">
+        <input type="number" name="number" id="txt3">
+    </div>
+
+    <div class="div">
+        <input type="button" value="Calcular" onclick="contar()">
+    </div>
+
+    <div id="resultado_1">
+        oi
+    </div>
+
+    <div id="resultado_2">
+        
+    </div>
+    <div id="resultado_3">
+       
+    </div>
+    <div id="resultado_4">
+        
+    </div>
+
+
+    <script>
+        function contar() {
+            let inicio = document.getElementById('txt1').value;
+            let fim = document.getElementById('txt2').value;
+            let passo = document.getElementById('txt3').value;
+            let resultado_1 = document.getElementById('resultado_1');
+            let resultado_2 = document.getElementById('resultado_2');
+            let resultado_3 = document.getElementById('resultado_3');
+            let resultado_4 = document.getElementById('resultado_4');
+
+            if(inicio === '' || fim === '' || passo === '') {
+                resultado_1.innerHTML = 'não tem como calcular sem o conteudo';
+                return;
+            }
+
+            inicio = Number(inicio);
+            fim = Number(fim);
+            passo = Number(passo);
+
+            if (passo <= 0) {
+                resultado_1.innerHTML = 'tente outro numero';
+                return;
+            }
+
+            let contador = '';
+            for(let c = inicio; c <= fim; c += passo ) {
+                contador += `${c}`;
+            }
+
+            resultado_1.innerHTML = inicio;
+            resultado_2.innerHTML = fim;
+            resultado_3.innerHTML = passo;
+            resultado_4.innerHTML = contador;
+        }
+    </script>
+</body>
+</html>
